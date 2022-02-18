@@ -14,6 +14,5 @@ use App\Http\Controllers\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::resource('categories', CategoryController::class);
-Route::resource('products', ProductController::class);
+//Route::resource('categories', CategoryController::class);
+// Route::resource('products', ProductController::class);
