@@ -4,17 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
-        Material Dashboard 2 by Creative Tim
+        @php
+            if(isset($title)){
+                echo $title;
+            } else {
+                echo 'Aries Shoes';
+            }
+        @endphp
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     {{-- <link id="pagestyle" href="{{asset('css/app.css')}}" rel="stylesheet" /> --}}
-    <link id="pagestyle" href="{{asset('css/style.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/styleP.css')}}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -30,11 +37,11 @@
         <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="#">
+                    <a class="nav-link text-white " href="{{ route('categories.index')}}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">Categories</span>
+                        <span class="nav-link-text ms-1">{{__('Categories')}}</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -42,7 +49,7 @@
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">table_view</i>
                         </div>
-                        <span class="nav-link-text ms-1">Products</span>
+                        <span class="nav-link-text ms-1">{{__('Products')}}</span>
                     </a>
                 </li>
             </ul>
@@ -54,16 +61,16 @@
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-                        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Template</li>
+                        <li class="breadcrumb-item text-sm">
+                            @include('partials/language_switcher')
+                        </li> 
                     </ol>
-                     <h6 class="font-weight-bolder mb-0">Template</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group input-group-outline">
                             <label class="form-label"></label>
-                            <input type="text" class="form-control" placeholder="Type here...">
+                            <input type="text" class="form-control" placeholder="{{__('Type here')}}...">
                         </div>
                     </div>
                 </div>
@@ -73,6 +80,14 @@
         <div class="container-fluid py-4">
             <div class="row min-vh-80 h-100">
                 <div class="col-12">
+                    @if (Session::has('noti'))
+                        @php
+                            $noti = Session::get('noti');
+                        @endphp
+                        <div class="alert alert-success">
+                            {{$noti}}
+                        </div>
+                    @endif
                     @yield('content')
                 </div>
              </div>
