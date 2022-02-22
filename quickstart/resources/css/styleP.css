@@ -1,0 +1,7 @@
+.table > :not(caption) > * > *{
+    padding: 8px 24px;
+}
+input {
+  border: 1px solid #adb5bd;
+  outline: none
+}
