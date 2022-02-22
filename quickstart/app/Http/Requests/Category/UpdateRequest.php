@@ -31,12 +31,12 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'cat_name.required' => __('nameEmpty'),
+            'cat_name.required' => __('empty', ['attr' => __('cat_name')]),
             'cat_name.unique' => __('catnameUnique'),
             'cat_name.max' => __('nameMax'),
-            'cat_name.alpha_num' => __('string'),
+            'cat_name.string' => __('string'),
             'cat_desc.string' => __('string'),
-            'cat_desc.required' => __('descEmpty'),
+            'cat_desc.required' => __('empty', ['attr' => __('desc')]),
             'cat_desc.max' => __('descMax'),
         ];
     }

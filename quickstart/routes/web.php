@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-//use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +18,6 @@ Route::get('language/{locale}/', function ($locale) {
     app()->setLocale($locale);
     session()->put('locale', $locale);
     return redirect()->back();
-});
+})->name('lang');
 Route::resource('categories', CategoryController::class);
-// Route::resource('products', ProductController::class);
+Route::resource('products', ProductController::class);
