@@ -16,10 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title = __('list') . ' ' . __('cs');
         $categories = Category::all();
 
-        return view('categories.index', compact('title', 'categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -29,9 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $title = __('addCs');
-
-        return view('categories.create', compact('title'));
+        return view('categories.create');
     }
 
     /**
@@ -67,9 +64,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $title = __('editCs');
-
-        return view('categories.edit', compact('title', 'category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -81,7 +76,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateRequest $request, Category $category)
     {
-        $category->update($request->all());
+        $category->update($request->only('cat_name', 'cat_desc'));
 
         return redirect()->route('categories.index')->with('noti', __('notiUpCs'));
     }

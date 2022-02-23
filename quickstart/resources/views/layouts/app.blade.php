@@ -4,13 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>
-        @php
-            if(isset($title)){
-                echo $title;
-            } else {
-                echo 'Aries Shoes';
-            }
-        @endphp
+        @yield('title')
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -20,8 +14,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     {{-- <link id="pagestyle" href="{{asset('css/app.css')}}" rel="stylesheet" /> --}}
-    <link href="{{asset('css/style.css')}}" rel="stylesheet" />
-    <link href="{{asset('css/styleP.css')}}" rel="stylesheet" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styleP.css') }}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-200">
@@ -37,19 +31,19 @@
         <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="{{ route('categories.index')}}">
+                    <a class="nav-link text-white " href="{{ route('categories.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">dashboard</i>
                         </div>
-                        <span class="nav-link-text ms-1">{{__('Categories')}}</span>
+                        <span class="nav-link-text ms-1">{{ __('cs') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="#">
+                    <a class="nav-link text-white " href="{{ route('products.index') }}">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">table_view</i>
                         </div>
-                        <span class="nav-link-text ms-1">{{__('Products')}}</span>
+                        <span class="nav-link-text ms-1">{{ __('ps') }}</span>
                     </a>
                 </li>
             </ul>
@@ -70,7 +64,7 @@
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                         <div class="input-group input-group-outline">
                             <label class="form-label"></label>
-                            <input type="text" class="form-control" placeholder="{{__('Type here')}}...">
+                            <input type="text" class="form-control" placeholder="{{ __('type_here') }}">
                         </div>
                     </div>
                 </div>
@@ -85,7 +79,15 @@
                             $noti = Session::get('noti');
                         @endphp
                         <div class="alert alert-success">
-                            {{$noti}}
+                            <div class="text-white">{{ $noti }}</div>
+                        </div>
+                    @endif
+                    @if (Session::has('fail'))
+                        @php
+                            $fail = Session::get('fail');
+                        @endphp
+                        <div class="alert alert-danger">
+                            <div class="text-white">{{ $fail }}</div>
                         </div>
                     @endif
                     @yield('content')
@@ -102,7 +104,7 @@
                                     document.write(new Date().getFullYear())
                                 </script>,
                                 Made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Aries</a>
+                                <a href="#" class="font-weight-bold" target="_blank">Aries</a>
                                 for a better web.
                             </div>
                         </div>
@@ -111,15 +113,6 @@
             </footer>
         </div>
     </main>
-    <script>
-        var win = navigator.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
 </body>
 
 </html>
